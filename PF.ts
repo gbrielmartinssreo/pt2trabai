@@ -1,3 +1,5 @@
+import { Contas } from "./interface_conta.ts";
+
 export class PF {
     private _nomeTitular: string;
     private _cpf: number;
