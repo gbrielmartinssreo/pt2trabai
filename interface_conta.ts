@@ -1,5 +1,5 @@
 
-export interface Contas{
+export interface Iconta{
     _nome:string;
     _senha:number;
     _numeroConta:number;

@@ -71,4 +71,6 @@ export abstract class Conta implements Iconta{
 
     protected abstract deposito(numeroConta: number, saldo: number): void;
 
+    Info(){}
+
 }
