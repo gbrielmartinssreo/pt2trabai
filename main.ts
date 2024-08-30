@@ -2,6 +2,7 @@ import promptSync from 'prompt-sync'; // importa um módulo que captura entradas
 import { PF } from "./PF";
 import { PJ } from "./PJ";
 import {Gerente} from "./Gerente";
+import {Conta} from "./Conta.ts";
 
 const prompt = promptSync(); // cria uma instância do prompt-sync
 

@@ -12,4 +12,6 @@ export interface Contas{
 
     getNumeroConta():number
     setNumeroConta(numeroConta:number):void
+
+    Info(): void;
 }
