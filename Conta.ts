@@ -1,6 +1,6 @@
-import { IConta } from "./interface_conta";
+import { Iconta } from "./interface_conta";
 
-export abstract class Conta implements IConta{
+export abstract class Conta implements Iconta{
 
     //vem da interface
     public _nome: string;
