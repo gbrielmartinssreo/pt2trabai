@@ -72,4 +72,3 @@ export abstract class Conta implements Contas{
     protected abstract deposito(numeroConta: number, saldo: number): void;
 
 }
-gayagaygayaygaygagaygaygyagaygaygyagyagyagyagayg
