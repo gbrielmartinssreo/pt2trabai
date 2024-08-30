@@ -1,6 +1,6 @@
-import { Interface } from "readline"; // QUE ISSO?
+import { Contas } from "./interface_conta"; 
 
-export abstract class Conta implements Interface{
+export abstract class Conta implements Contas{
 
     //vem da interface
     public _nome: string;
@@ -20,6 +20,27 @@ export abstract class Conta implements Interface{
         this._saldo = saldo;
         this._extratoSaque = extratoSaque;
         this._extratoDeposito = extratoDeposito;
+    }
+
+    getNome(): string {
+        return this._nome;
+    }
+    setNome(nome: string): void {
+        this._nome = nome;
+    }
+
+    getSenha(): number {
+        return this._senha;
+    }
+    setSenha(senha: number): void {
+        this._senha = senha;
+    }
+
+    getNumeroConta(): number {
+        return this._numeroConta;
+    }
+    setNumeroConta(numeroConta: number): void {
+        this._numeroConta = numeroConta;
     }
 
     protected get saldo(){

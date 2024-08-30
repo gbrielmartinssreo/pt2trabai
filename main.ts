@@ -23,8 +23,8 @@ let user1: PJ = new PJ("Maotun", 12345678912345, 1234, 1, 850);
 let user2: PJ = new PJ("JK Kennedy", 10203040506070, 4321, 2, 1345);
 let user3: PF = new PF("Jucelino", 11223344556, 1111, 3, 31000);
 let user4: PF = new PF("Adolfo", 99887766554, 2222, 4, 120);
-let user5: Gerente = new Gerente("Paul Matos", "paul@asp.com.br", 12345678, 40028922,[],[]);
-let user6: Gerente = new Gerente("Antoncio da silva", "anton@asp.com.br", 32345678, 40028923,[],[]);
+let user5: Gerente = new Gerente("Paul Matos",5678 , 12345678, 40028922,[],[]);
+let user6: Gerente = new Gerente("Antoncio da silva",1234, 32345678, 40028923,[],[]);
 
 arraycontasPJ.push(user1, user2);
 arraycontasPF.push(user3, user4);
@@ -35,16 +35,16 @@ user5.adicionarContaPF(user3);
 //! Função login de membros
 function acessoMembros() {
     do {
-        let usuario: string = prompt("Digite seu email: ");
         let senha: number = parseInt(prompt("Digite sua senha: "));
 
-        const procuraConta = (email: string, arrayGerentes: Gerente[]): number => {
-            return arrayGerentes.findIndex((gerente) => gerente.getEmail() === email);
+        const procuraConta = (senha: number, arrayGerentes: Gerente[]): number => {
+            return arrayGerentes.findIndex((gerente) => gerente.getSenha() === senha);
         };
 
-        indiceUsuarioMembro = procuraConta(usuario, arrayGerentes);
+        indiceUsuarioMembro = procuraConta(senha, arrayGerentes);
 
-        if (indiceUsuarioMembro === -1 || arrayGerentes[indiceUsuarioMembro].getSenha() !== senha) {
+        if (indiceUsuarioMembro === -1) {
+            console.log("Senha incorreta. Tente novamente.");
             continue;
         }
         break;
@@ -388,7 +388,6 @@ function menuClientes() {
                         for (let conta of gerente.getContasPF()) {
                             if (conta.cpf === arraycontasPF[indiceConta].cpf) {
                                 console.log(`Nome do Gerente: ${gerente.getNome()}`);
-                                console.log(`Email do Gerente: ${gerente.getEmail()}`);
                                 console.log(`Telefone do Gerente: ${gerente.getNumeroContato()}`);
                                 gerenteEncontrado = true;
                                 break;
@@ -401,7 +400,6 @@ function menuClientes() {
                         for (let conta of gerente.getContasPJ()) {
                             if (conta.cnpj === arraycontasPJ[indiceConta].cnpj) {
                                 console.log(`Nome do Gerente: ${gerente.getNome()}`);
-                                console.log(`Email do Gerente: ${gerente.getEmail()}`);
                                 console.log(`Telefone do Gerente: ${gerente.getNumeroContato()}`);
                                 gerenteEncontrado = true;
                                 break;
