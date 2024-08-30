@@ -1,19 +1,20 @@
 import { PJ } from "./PJ";
-import { PF } from "./PF";    
+import { PF } from "./PF";   
+import { Contas } from "./interface_conta.ts";
 
-export class Gerente{
-    private _nome: string;
-    private _email: string;
-    private _senha: number;
+export class Gerente implements Contas{
+    public _nome: string;
+    public _senha: number;
+    public _numeroConta:number;
     private _numeroContato: number;
     private _contasPF: PF[];
     private _contasPJ: PJ[];
     
 
-    constructor(nome: string, email: string, senha: number, numeroContato: number,contasPJ:PJ[],contasPF:PF[]){
+    constructor(nome: string, senha: number, numeroConta:number,numeroContato: number,contasPJ:PJ[],contasPF:PF[]){
         this._nome = nome;
-        this._email = email;
         this._senha = senha;
+        this._numeroConta = numeroConta;
         this._numeroContato = numeroContato;
         this._contasPJ=contasPJ;
         this._contasPF=contasPF;
@@ -27,20 +28,19 @@ export class Gerente{
         this._nome = nome;
     }
 
-    public getEmail(): string {
-        return this._email;
-    }
-
-    public setEmail(email: string): void {
-        this._email = email;
-    }
-
     public getSenha(): number {
         return this._senha;
     }
 
     public setSenha(senha: number): void {
         this._senha = senha;
+    }
+
+    public getNumeroConta(): number {
+        return this._numeroConta;
+    }
+    public setNumeroConta(numeroConta:number): void {
+        this._numeroConta = numeroConta;
     }
 
     public getNumeroContato(): number {
@@ -51,11 +51,11 @@ export class Gerente{
         this._numeroContato = numeroContato;
     }
 
-    getContasPF(): PF[] {
+    public getContasPF(): PF[] {
         return this._contasPF;
     }
 
-    getContasPJ(): PJ[] {
+    public getContasPJ(): PJ[] {
         return this._contasPJ;
     }
 
