@@ -47,6 +47,7 @@ export abstract class Conta implements Iconta{
         return this._saldo;
     }
 
+    //é vetor, tem que mexer dps
     protected get extratoSaque(){
         return this._extratoSaque;
     }
