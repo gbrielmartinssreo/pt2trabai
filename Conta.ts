@@ -1,30 +1,22 @@
-import { Contas } from "./interface_conta"; 
+import { Iconta } from "./interface_conta";
 
-export abstract class Conta implements Contas{
-
-    //vem da interface
+export abstract class Conta implements Iconta {
     public _nome: string;
     public _senha: number;
     public _numeroConta: number;
-
-    //é daqui mesmo
     protected _saldo: number;
-    protected _extratoSaque: number[];
-    protected _extratoDeposito: number[];
 
-    constructor(nome: string,senha: number,numeroConta: number,saldo: number, extratoSaque: number[], extratoDeposito: number[]){
-
+    constructor(nome: string, senha: number, numeroConta: number, saldo: number) {
         this._nome = nome;
         this._senha = senha;
         this._numeroConta = numeroConta;
         this._saldo = saldo;
-        this._extratoSaque = extratoSaque;
-        this._extratoDeposito = extratoDeposito;
     }
 
     getNome(): string {
         return this._nome;
     }
+
     setNome(nome: string): void {
         this._nome = nome;
     }
@@ -32,6 +24,7 @@ export abstract class Conta implements Contas{
     getSenha(): number {
         return this._senha;
     }
+
     setSenha(senha: number): void {
         this._senha = senha;
     }
@@ -39,43 +32,27 @@ export abstract class Conta implements Contas{
     getNumeroConta(): number {
         return this._numeroConta;
     }
+
     setNumeroConta(numeroConta: number): void {
         this._numeroConta = numeroConta;
     }
 
-    protected get saldo(){
+    protected get saldo() {
         return this._saldo;
     }
 
-    //é vetor, tem que mexer dps
-    protected get extratoSaque(){
-        return this._extratoSaque;
-    }
-
-    protected get extratoDeposito(){
-        return this._extratoDeposito;
-    }
-
-    protected set saldo(saldo: number){
+    protected set saldo(saldo: number) {
         this._saldo = saldo;
     }
 
-    protected set extratoSaque(extratoSaque: number[]){
-        this._extratoSaque = extratoSaque;
+    // Métodos abstratos para serem implementados pelas classes filhas
+    protected abstract saque(valor: number): void;
+    protected abstract deposito(valor: number): void;
+
+    // Método Info para exibir os dados básicos da conta
+    Info(): void {
+        console.log(`Nome: ${this._nome}`);
+        console.log(`Número da Conta: ${this._numeroConta}`);
+        console.log(`Saldo: ${this._saldo}`);
     }
-
-    protected set extratoDeposito(extratoDeposito: number[]){
-        this._extratoDeposito = extratoDeposito;
-    }
-
-    protected abstract saque(numeroConta: number, saldo: number): void;
-
-    protected abstract deposito(numeroConta: number, saldo: number): void;
-
-<<<<<<< HEAD
 }
-=======
-    Info(){}
-
-}
->>>>>>> de03e672f551a11c3e9e9dd88b28d24254ce7cfe

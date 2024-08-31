@@ -1,26 +1,23 @@
 import { PJ } from "./PJ";
-import { PF } from "./PF";   
-import { Contas } from "./interface_conta.ts";
+import { PF } from "./PF.ts";
+import { Iconta } from "./interface_conta.ts";
 
-export class Gerente implements Contas{
+export class Gerente implements Iconta {
     public _nome: string;
     public _senha: number;
-    public _numeroConta:number;
     private _numeroContato: number;
     private _contasPF: PF[];
     private _contasPJ: PJ[];
-    
 
-    constructor(nome: string, senha: number, numeroConta:number,numeroContato: number,contasPJ:PJ[],contasPF:PF[]){
+    constructor(nome: string, senha: number, numeroContato: number, contasPJ: PJ[], contasPF: PF[]) {
         this._nome = nome;
         this._senha = senha;
-        this._numeroConta = numeroConta;
         this._numeroContato = numeroContato;
-        this._contasPJ=contasPJ;
-        this._contasPF=contasPF;
+        this._contasPJ = contasPJ;
+        this._contasPF = contasPF;
     }
 
-    public getNome(): string{
+    public getNome(): string {
         return this._nome;
     }
 
@@ -34,13 +31,6 @@ export class Gerente implements Contas{
 
     public setSenha(senha: number): void {
         this._senha = senha;
-    }
-
-    public getNumeroConta(): number {
-        return this._numeroConta;
-    }
-    public setNumeroConta(numeroConta:number): void {
-        this._numeroConta = numeroConta;
     }
 
     public getNumeroContato(): number {
@@ -63,7 +53,6 @@ export class Gerente implements Contas{
         this._contasPF.push(conta);
     }
 
-
     public adicionarContaPJ(conta: PJ) {
         this._contasPJ.push(conta);
     }
@@ -71,38 +60,33 @@ export class Gerente implements Contas{
     public listarContasPJ(): void {
         console.log("Contas PJ:");
         this._contasPJ.forEach((conta) => {
-            console.log(`Nome: ${conta.nomeTitular}, CNPJ: ${conta.cnpj}, Número da Conta: ${conta.numeroConta}`);
+            console.log(`Nome: ${conta._nome}, CNPJ: ${conta.getCNPJ()}, Número da Conta: ${conta._numeroConta}`);
         });
     }
 
     public listarContasPF(): void {
         console.log("Contas PF:");
         this._contasPF.forEach((conta) => {
-            console.log(`Nome: ${conta.nomeTitular}, CPF: ${conta.cpf}, Número da Conta: ${conta.numeroConta}`);
+            console.log(`Nome: ${conta._nome}, CPF: ${conta.getcpf()}, Número da Conta: ${conta._numeroConta}`);
         });
     }
-    /*public adicionarContaPJ(numeroConta: PJ) {
-        return this._contasPJ.push(numeroConta);
-    }*/
 
     public removerContaPF(numeroConta: number): void {
-        const novoArray: PF[] = [];
-        for (let i = 0; i < this._contasPF.length; i++) {
-            if (this._contasPF[i].numeroConta !== numeroConta) {
-                novoArray.push(this._contasPF[i]);
-            }
-        }
+        const novoArray: PF[] = this._contasPF.filter(conta => conta._numeroConta !== numeroConta);
         this._contasPF = novoArray;
     }
 
     public removerContaPJ(numeroConta: number): void {
-        const novoArray: PJ[] = [];
-        for (let i = 0; i < this._contasPJ.length; i++) {
-            if (this._contasPJ[i].numeroConta !== numeroConta) {
-                novoArray.push(this._contasPJ[i]);
-            }
-        }
+        const novoArray: PJ[] = this._contasPJ.filter(conta => conta._numeroConta !== numeroConta);
         this._contasPJ = novoArray;
     }
 
+    Info(): void {
+        console.log(`Nome: ${this._nome}`);
+        console.log(`Número de Contato: ${this._numeroContato}`);
+        console.log("Contas PJ:");
+        this.listarContasPJ();
+        console.log("Contas PF:");
+        this.listarContasPF();
+    }
 }

@@ -2,6 +2,7 @@ import promptSync from 'prompt-sync'; // importa um módulo que captura entradas
 import { PF } from "./PF";
 import { PJ } from "./PJ";
 import {Gerente} from "./Gerente";
+import { log } from 'console';
 
 const prompt = promptSync(); // cria uma instância do prompt-sync
 
@@ -23,8 +24,8 @@ let user1: PJ = new PJ("Maotun", 12345678912345, 1234, 1, 850);
 let user2: PJ = new PJ("JK Kennedy", 10203040506070, 4321, 2, 1345);
 let user3: PF = new PF("Jucelino", 11223344556, 1111, 3, 31000);
 let user4: PF = new PF("Adolfo", 99887766554, 2222, 4, 120);
-let user5: Gerente = new Gerente("Paul Matos",5678 , 12345678, 40028922,[],[]);
-let user6: Gerente = new Gerente("Antoncio da silva",1234, 32345678, 40028923,[],[]);
+let user5: Gerente = new Gerente("Paul Matos",5678 , 12345678,[],[]);
+let user6: Gerente = new Gerente("Antoncio da silva",1234, 32345678,[],[]);
 
 arraycontasPJ.push(user1, user2);
 arraycontasPF.push(user3, user4);
@@ -62,7 +63,7 @@ function login(): void {
             tipoConta = "PF";
 
             const procuraConta = (cpf: number, arraycontas: PF[]): number => {
-                return arraycontas.findIndex((PF) => PF.cpf === cpf);
+                return arraycontas.findIndex((PF) => PF.getcpf() === cpf);
             };
 
             indiceConta = procuraConta(usuario, arraycontasPF);
@@ -72,7 +73,7 @@ function login(): void {
                 continue;
             } else {
                 let inputSenha = parseInt(prompt("Senha da conta: "));
-                if (arraycontasPF[indiceConta].senha !== inputSenha) {
+                if (arraycontasPF[indiceConta].getSenha() !== inputSenha) {
                     console.log("\nSenha incorreta, operação reiniciada\n");
                     continue;
                 }
@@ -82,7 +83,7 @@ function login(): void {
             tipoConta = "PJ";
 
             const procuraConta = (cnpj: number, arraycontas: PJ[]): number => {
-                return arraycontas.findIndex((PJ) => PJ.cnpj === cnpj);
+                return arraycontas.findIndex((PJ) => PJ.getCNPJ() === cnpj);
             };
 
             indiceConta = procuraConta(usuario, arraycontasPJ);
@@ -92,7 +93,7 @@ function login(): void {
                 continue;
             } else {
                 let inputSenha = parseInt(prompt("Senha da conta: "));
-                if (arraycontasPJ[indiceConta].senha !== inputSenha) {
+                if (arraycontasPJ[indiceConta].getSenha() !== inputSenha) {
                     console.log("\nSenha incorreta, operação reiniciada\n");
                     continue;
                 }
@@ -111,11 +112,11 @@ function adicionarContaAoGerente() {
     let contaEncontrada = false;
 
     const procuraContaPF = (numConta: number, arraycontas: PF[]): number => {
-        return arraycontas.findIndex((PF) => PF.numeroConta === numConta);
+        return arraycontas.findIndex((PF) => PF.getNumeroConta() === numConta);
     };
 
     const procuraContaPJ = (numConta: number, arraycontas: PJ[]): number => {
-        return arraycontas.findIndex((PJ) => PJ.numeroConta === numConta);
+        return arraycontas.findIndex((PJ) => PJ.getNumeroConta() === numConta);
     };
 
     let indiceNumberPF = procuraContaPF(numberConta, arraycontasPF);
@@ -138,34 +139,34 @@ function adicionarContaAoGerente() {
 }
 
 //! Função para exibir extrato do cliente
-function exibirExtratoCliente() {
-    let numberConta = +prompt("Digite o número da conta para ver o extrato: ");
-    let contaEncontrada = false;
+// function exibirExtratoCliente() {
+//     let numberConta = +prompt("Digite o número da conta para ver o extrato: ");
+//     let contaEncontrada = false;
 
-    const procuraContaPF = (numConta: number, arraycontas: PF[]): number => {
-        return arraycontas.findIndex((PF) => PF.numeroConta === numConta);
-    };
+//     const procuraContaPF = (numConta: number, arraycontas: PF[]): number => {
+//         return arraycontas.findIndex((PF) => PF.getNumeroConta() === numConta);
+//     };
 
-    const procuraContaPJ = (numConta: number, arraycontas: PJ[]): number => {
-        return arraycontas.findIndex((PJ) => PJ.numeroConta === numConta);
-    };
+//     const procuraContaPJ = (numConta: number, arraycontas: PJ[]): number => {
+//         return arraycontas.findIndex((PJ) => PJ.getNumeroConta() === numConta);
+//     };
 
-    let indiceNumberPF = procuraContaPF(numberConta, arraycontasPF);
-    if (indiceNumberPF !== -1) {
-        arraycontasPF[indiceNumberPF].infoPF(arraycontasPF, indiceNumberPF);
-        contaEncontrada = true;
-    }
+//     let indiceNumberPF = procuraContaPF(numberConta, arraycontasPF);
+//     if (indiceNumberPF !== -1) {
+//         arraycontasPF[indiceNumberPF].infoPF(arraycontasPF, indiceNumberPF);
+//         contaEncontrada = true;
+//     }
 
-    let indiceNumberPJ = procuraContaPJ(numberConta, arraycontasPJ);
-    if (indiceNumberPJ !== -1) {
-        arraycontasPJ[indiceNumberPJ].infoPJ(arraycontasPJ, indiceNumberPJ);
-        contaEncontrada = true;
-    }
+//     let indiceNumberPJ = procuraContaPJ(numberConta, arraycontasPJ);
+//     if (indiceNumberPJ !== -1) {
+//         arraycontasPJ[indiceNumberPJ].infoPJ(arraycontasPJ, indiceNumberPJ);
+//         contaEncontrada = true;
+//     }
 
-    if (!contaEncontrada) {
-        console.log("\nConta não existente\n");
-    }
-}
+//     if (!contaEncontrada) {
+//         console.log("\nConta não existente\n");
+//     }
+// }
 
 //! Função para remover conta
 function removerConta() {
@@ -173,11 +174,11 @@ function removerConta() {
     let contaEncontrada = false;
 
     const procuraContaPF = (numConta: number, arraycontas: PF[]): number => {
-        return arraycontas.findIndex((PF) => PF.numeroConta === numConta);
+        return arraycontas.findIndex((PF) => PF.getNumeroConta() === numConta);
     };
 
     const procuraContaPJ = (numConta: number, arraycontas: PJ[]): number => {
-        return arraycontas.findIndex((PJ) => PJ.numeroConta === numConta);
+        return arraycontas.findIndex((PJ) => PJ.getNumeroConta() === numConta);
     };
 
     let indiceNumberPF = procuraContaPF(numberConta, arraycontasPF);
@@ -206,8 +207,8 @@ function menuMembros() {
     do {
         console.log("----------------------------\n" +
             "| 1 Adicionar conta aos cuidados\n" +
-            "| 2 Extrato de cliente\n" +
-            "| 3 Listar clientes\n" +
+            // "| 2 Extrato de cliente\n" +
+            "| 2 Listar clientes\n" +
             "| 4 Remover conta"+
             "| 0 Voltar\n" +
             "----------------------------");
@@ -218,10 +219,10 @@ function menuMembros() {
             case 1:
                 adicionarContaAoGerente();
                 break;
+            // case 2:
+            //     exibirExtratoCliente();
+            //     break;
             case 2:
-                exibirExtratoCliente();
-                break;
-            case 3:
                 arrayGerentes[indiceUsuarioMembro].listarContasPJ();
                 arrayGerentes[indiceUsuarioMembro].listarContasPF();
                 break;
@@ -245,7 +246,7 @@ function menuClientes() {
         console.log("----------------------------\n" +
             "| 1 Sacar dinheiro\n" +
             "| 2 Depositar\n" +
-            "| 3 Extrato\n" +
+            "| 3 Saldo\n" +
             "| 4 Transferencia\n" +
             "| 5 Simular emprestimo\n" +
             "| 6 Obter dados do gerente"+
@@ -280,12 +281,19 @@ function menuClientes() {
                 break;
 
             case 3:
+                 
+                 if(user1){
+                    return user1.Info();
+                 } else if(){
+                    return
+                 }
+                 
                 //! Extrato
-                if (tipoConta === "PF") {
-                    arraycontasPF[indiceConta].infoPF(arraycontasPF, indiceConta);
-                } else if (tipoConta === "PJ") {
-                    arraycontasPJ[indiceConta].infoPJ(arraycontasPJ, indiceConta);
-                }
+                // if (tipoConta === "PF") {
+                //     arraycontasPF[indiceConta].infoPF(arraycontasPF, indiceConta);
+                // } else if (tipoConta === "PJ") {
+                //     arraycontasPJ[indiceConta].infoPJ(arraycontasPJ, indiceConta);
+                // }
 
                 break;
 
@@ -301,7 +309,7 @@ function menuClientes() {
 
                     if (tamanhoRecebeTransferencia === 11) {
                         const procuraConta = (cpf: number, arraycontas: PF[]): number => {
-                            return arraycontas.findIndex((PF) => PF.cpf === cpf);
+                            return arraycontas.findIndex((PF) => PF.getcpf() === cpf);
                         }
                         indiceContaRecebe = procuraConta(recebeTransferencia, arraycontasPF);
 
@@ -386,7 +394,7 @@ function menuClientes() {
                 if (tipoConta === "PF") {
                     for (let gerente of arrayGerentes) {
                         for (let conta of gerente.getContasPF()) {
-                            if (conta.cpf === arraycontasPF[indiceConta].cpf) {
+                            if (conta.getcpf() === arraycontasPF[indiceConta].getcpf()) {
                                 console.log(`Nome do Gerente: ${gerente.getNome()}`);
                                 console.log(`Telefone do Gerente: ${gerente.getNumeroContato()}`);
                                 gerenteEncontrado = true;
@@ -398,7 +406,7 @@ function menuClientes() {
                 } else if (tipoConta === "PJ") {
                     for (let gerente of arrayGerentes) {
                         for (let conta of gerente.getContasPJ()) {
-                            if (conta.cnpj === arraycontasPJ[indiceConta].cnpj) {
+                            if (conta.getCNPJ() === arraycontasPJ[indiceConta].getCNPJ()) {
                                 console.log(`Nome do Gerente: ${gerente.getNome()}`);
                                 console.log(`Telefone do Gerente: ${gerente.getNumeroContato()}`);
                                 gerenteEncontrado = true;
