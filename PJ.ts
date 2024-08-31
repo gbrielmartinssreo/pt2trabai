@@ -45,5 +45,3 @@ export class PJ extends Conta implements Iconta{
 // ---------------------------------------------------------------//
 
 }
-
-export {};
