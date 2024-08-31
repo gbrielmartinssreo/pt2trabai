@@ -1,5 +1,4 @@
 import { Conta } from "./Conta";
-import { Interface } from "readline";
 import { Iconta } from "./interface_conta";
 
 export class PJ extends Conta implements Iconta{
