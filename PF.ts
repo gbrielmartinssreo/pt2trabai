@@ -21,11 +21,19 @@ class PF extends Conta implements Iconta {
 
 // ---------------------------------------------------------------//
     saque(valor: number){
+        let i: number = 0;
+
         this._saldo -= valor;
+        this._extratoSaque[i] = valor;
+        i++;
     }
 
     deposito(valor: number){
+        let i: number = 0;
+
         this._saldo += valor;
+        this._extratoDeposito[i] = valor;
+        i++;
     }
 // ---------------------------------------------------------------//
 
