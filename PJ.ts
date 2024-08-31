@@ -19,15 +19,23 @@ export class PJ extends Conta implements Iconta{
         this._cnpj = cnpj
     }
 
-
+// ---------------------------------------------------------------//
     saque(valor: number){
-        this._saldo -= valor
+        let i: number = 0;
+
+        this._saldo -= valor;
+        this._extratoSaque[i] = valor;
+        i++;
     }
 
     deposito(valor: number){
-        this._saldo += valor
-    }
+        let i: number = 0;
 
+        this._saldo += valor;
+        this._extratoDeposito[i] = valor;
+        i++;
+    }
+// ---------------------------------------------------------------//
 
 }
 
