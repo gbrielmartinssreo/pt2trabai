@@ -47,6 +47,7 @@ export abstract class Conta implements Contas{
         return this._saldo;
     }
 
+    //é vetor, tem que mexer dps
     protected get extratoSaque(){
         return this._extratoSaque;
     }
@@ -71,4 +72,10 @@ export abstract class Conta implements Contas{
 
     protected abstract deposito(numeroConta: number, saldo: number): void;
 
+<<<<<<< HEAD
 }
+=======
+    Info(){}
+
+}
+>>>>>>> de03e672f551a11c3e9e9dd88b28d24254ce7cfe
