@@ -139,35 +139,6 @@ function adicionarContaAoGerente() {
     }
 }
 
-//! Função para exibir extrato do cliente
-// function exibirExtratoCliente() {
-//     let numberConta = +prompt("Digite o número da conta para ver o extrato: ");
-//     let contaEncontrada = false;
-
-//     const procuraContaPF = (numConta: number, arraycontas: PF[]): number => {
-//         return arraycontas.findIndex((PF) => PF.getNumeroConta() === numConta);
-//     };
-
-//     const procuraContaPJ = (numConta: number, arraycontas: PJ[]): number => {
-//         return arraycontas.findIndex((PJ) => PJ.getNumeroConta() === numConta);
-//     };
-
-//     let indiceNumberPF = procuraContaPF(numberConta, arraycontasPF);
-//     if (indiceNumberPF !== -1) {
-//         arraycontasPF[indiceNumberPF].infoPF(arraycontasPF, indiceNumberPF);
-//         contaEncontrada = true;
-//     }
-
-//     let indiceNumberPJ = procuraContaPJ(numberConta, arraycontasPJ);
-//     if (indiceNumberPJ !== -1) {
-//         arraycontasPJ[indiceNumberPJ].infoPJ(arraycontasPJ, indiceNumberPJ);
-//         contaEncontrada = true;
-//     }
-
-//     if (!contaEncontrada) {
-//         console.log("\nConta não existente\n");
-//     }
-// }
 
 //! Função para remover conta
 function removerConta() {
