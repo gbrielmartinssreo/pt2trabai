@@ -1,59 +1,47 @@
 import { Conta } from "./Conta";
 import { Iconta } from "./interface_conta";
 
-export class PJ extends Conta implements Iconta {
+export class PJ extends Conta implements Iconta{
 
-    private _cnpj: number;
-    private _extratoSaque: number[] = [];
-    private _extratoDeposito: number[] = [];
+    private _cnpj: number
 
     constructor(
-        nome: string,
-        cnpj: number, 
+        cnpj: number,
+        nome: string, 
         senha: number, 
         numeroConta: number, 
-        saldo: number
+        saldo: number,
+        extratoSaque: number[],
+        extratoDeposito: number[]
     ) {
-        super(nome, senha, numeroConta, saldo);
-        this._cnpj = cnpj;
+        super(nome, senha, numeroConta, saldo, extratoSaque, extratoDeposito)
+        this._cnpj = cnpj
     }
 
-    getCNPJ() {
+    getcpf(){
         return this._cnpj;
     }
 
-    setCNPJ(cnpj: number) {
-        this._cnpj = cnpj;
+    setcpf(cnpj: number){
+        return this._cnpj = cnpj;
     }
 
-    saque(valor: number) {
-        if (valor > 0 && valor <= this._saldo) {
-            this._saldo -= valor;
-            this._extratoSaque.push(valor);
-            console.log(`Saque de R$${valor} realizado com sucesso.`);
-        } else {
-            console.log("Saldo insuficiente ou valor inválido.");
-        }
+// ---------------------------------------------------------------//
+    saque(valor: number){
+        let i: number = 0;
+
+        this._saldo -= valor;
+        this._extratoSaque[i] = valor;
+        i++;
     }
 
-    deposito(valor: number) {
-        if (!isNaN(valor) && valor > 0) {
-            this._saldo += valor;
-            this._extratoDeposito.push(valor);
-            console.log(`Depósito de R$${valor} realizado com sucesso.`);
-        } else {
-            console.log("Valor de depósito inválido.");
-        }
-    }
+    deposito(valor: number){
+        let i: number = 0;
 
-    Info() {
-        console.log("...................");
-        super.Info();
-        console.log(`CNPJ: ${this._cnpj}`);
+        this._saldo += valor;
+        this._extratoDeposito[i] = valor;
+        i++;
     }
+// ---------------------------------------------------------------//
 
-    extrato() {
-        console.log("Extrato de Saques:", this._extratoSaque);
-        console.log("Extrato de Depósitos:", this._extratoDeposito);
-    }
 }

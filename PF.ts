@@ -1,53 +1,45 @@
 import { Conta } from "./Conta";
 import { Iconta } from "./interface_conta";
 
-export class PF extends Conta implements Iconta {
+class PF extends Conta implements Iconta {
 
     private _cpf: number;
-    private _extratoSaque: number[] = [];
-    private _extratoDeposito: number[] = [];
 
-    constructor(nome: string, cpf: number, senha: number, numeroConta: number, saldo: number) {
-        super(nome, senha, numeroConta, saldo);
+    constructor(cpf: number, nome: string,senha: number,numeroConta: number,saldo: number, extratoSaque: number[], extratoDeposito: number[]){
+
+        super(nome, senha, numeroConta, saldo, extratoSaque, extratoDeposito);
         this._cpf = cpf;
     }
 
-    getcpf() {
+    getcpf(){
         return this._cpf;
     }
 
-    setcpf(cpf: number) {
-        this._cpf = cpf;
+    setcpf(cpf: number){
+        return this._cpf = cpf;
     }
 
-    saque(valor: number) {
-        if (valor > 0 && valor <= this._saldo) {
-            this._saldo -= valor;
-            this._extratoSaque.push(valor);
-            console.log(`Saque de R$${valor} realizado com sucesso.`);
-        } else {
-            console.log("Saldo insuficiente ou valor inválido.");
-        }
+// ---------------------------------------------------------------//
+    saque(valor: number){
+        let i: number = 0;
+
+        this._saldo -= valor;
+        this._extratoSaque[i] = valor;
+        i++;
     }
 
-    deposito(valor: number) {
-        if (!isNaN(valor) && valor > 0) {
-            this._saldo += valor;
-            this._extratoDeposito.push(valor);
-            console.log(`Depósito de R$${valor} realizado com sucesso.`);
-        } else {
-            console.log("Valor de depósito inválido.");
-        }
-    }
+    deposito(valor: number){
+        let i: number = 0;
 
-    Info() {
-        console.log("...................");
-        super.Info();
-        console.log(`CPF: ${this._cpf}`);
+        this._saldo += valor;
+        this._extratoDeposito[i] = valor;
+        i++;
     }
+// ---------------------------------------------------------------//
 
-    extrato() {
-        console.log("Extrato de Saques:", this._extratoSaque);
-        console.log("Extrato de Depósitos:", this._extratoDeposito);
+
+    info(){
+
     }
+    
 }
