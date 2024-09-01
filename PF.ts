@@ -1,7 +1,7 @@
 import { Conta } from "./Conta";
 import { Iconta } from "./interface_conta";
 
-class PF extends Conta implements Iconta {
+export class PF extends Conta implements Iconta {
 
     private _cpf: number;
 
@@ -20,26 +20,23 @@ class PF extends Conta implements Iconta {
     }
 
 // ---------------------------------------------------------------//
-    saque(valor: number){
-        let i: number = 0;
-
-        this._saldo -= valor;
-        this._extratoSaque[i] = valor;
-        i++;
-    }
-
-    deposito(valor: number){
-        let i: number = 0;
-
+saque(valor: number){
+    if(!isNaN(valor) && valor <= this.saldo ){
         this._saldo += valor;
-        this._extratoDeposito[i] = valor;
-        i++;
+        this._extratoSaque.push(valor);
+    } else {
+        console.log("Deu errado, meu bacano. Vai ter q fz tudo dnv XD\n PFVR Renan, melhore (te amo) ");
     }
+}
+
+deposito(valor: number){
+    if(!isNaN(valor) && valor > 0 ){
+        this._saldo += valor;
+        this._extratoDeposito.push(valor);
+    } else {
+        console.log("Deu errado, meu bacano. Vai ter q fz tudo dnv XD\n PFVR Renan, melhore (te amo) ");
+    }
+}
 // ---------------------------------------------------------------//
 
-
-    info(){
-
-    }
-    
 }

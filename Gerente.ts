@@ -60,7 +60,7 @@ export class Gerente implements Iconta {
     public listarContasPJ(): void {
         console.log("Contas PJ:");
         this._contasPJ.forEach((conta) => {
-            console.log(`Nome: ${conta._nome}, CNPJ: ${conta.getCNPJ()}, Número da Conta: ${conta._numeroConta}`);
+            console.log(`Nome: ${conta._nome}, CNPJ: ${conta.getcnpj()}, Número da Conta: ${conta._numeroConta}`);
         });
     }
 

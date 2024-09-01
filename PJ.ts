@@ -18,30 +18,34 @@ export class PJ extends Conta implements Iconta{
         this._cnpj = cnpj
     }
 
-    getcpf(){
+    getcnpj(){
         return this._cnpj;
     }
 
-    setcpf(cnpj: number){
+    setcnpj(cnpj: number){
         return this._cnpj = cnpj;
     }
 
 // ---------------------------------------------------------------//
     saque(valor: number){
-        let i: number = 0;
-
-        this._saldo -= valor;
-        this._extratoSaque[i] = valor;
-        i++;
+        if(!isNaN(valor) && valor <= this.saldo ){
+            this._saldo += valor;
+            this._extratoSaque.push(valor);
+        } else {
+            console.log("Deu errado, meu bacano. Vai ter q fz tudo dnv XD\n PFVR Renan, melhore (te amo) ");
+        }
     }
 
     deposito(valor: number){
-        let i: number = 0;
-
-        this._saldo += valor;
-        this._extratoDeposito[i] = valor;
-        i++;
+        if(!isNaN(valor) && valor > 0 ){
+            this._saldo += valor;
+            this._extratoDeposito.push(valor);
+        } else {
+            console.log("Deu errado, meu bacano. Vai ter q fz tudo dnv XD\n PFVR Renan, melhore (te amo) ");
+        }
     }
+    
 // ---------------------------------------------------------------//
+
 
 }

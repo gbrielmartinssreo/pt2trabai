@@ -9,5 +9,5 @@ export interface Iconta{
     getSenha():number
     setSenha(senha:number):void
 
-    Info():void
+    Info(param1?: number[],param2?: number[]):void
 }
