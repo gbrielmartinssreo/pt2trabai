@@ -22,7 +22,7 @@ export class PF extends Conta implements Iconta {
 // ---------------------------------------------------------------//
 saque(valor: number){
     if(!isNaN(valor) && valor <= this.saldo ){
-        this._saldo += valor;
+        this._saldo -= valor;
         this._extratoSaque.push(valor);
     } else {
         console.log("Deu errado, meu bacano. Vai ter q fz tudo dnv XD\n PFVR Renan, melhore (te amo) ");

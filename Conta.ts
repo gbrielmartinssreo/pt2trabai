@@ -75,15 +75,16 @@ export abstract class Conta implements Iconta{
 //------------------------------------------------------------------------------------------//
 
     Info(extratoDeposito: number[] = this._extratoDeposito, extratoSaque: number[] = this._extratoSaque){
-        console.log("Extrato:\n");
         
         console.log(`Saldo da conta: ${this._saldo}`);
 
-            for(let i = 0; i < extratoDeposito.length; i++){
-                console.log(`Valor de deposito: ${extratoDeposito[i]}\n`);
+        console.log("Extrato:\n");
+
+            for(let i = 0; i < this._extratoDeposito.length; i++){
+                console.log(`Valor de deposito: ${this._extratoDeposito[i]}\n`);
             }
-            for(let i = 0; i < extratoSaque.length; i++){
-                console.log(`Valor de saque: ${extratoSaque[i]}\n`);
+            for(let i = 0; i < this._extratoSaque.length; i++){
+                console.log(`Valor de saque: ${this._extratoSaque[i]}\n`);
             }
         
     }
