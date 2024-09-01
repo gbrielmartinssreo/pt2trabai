@@ -282,22 +282,11 @@ function menuClientes() {
 
             case 3:
                 
-                // if(arraycontasPF[indiceConta]){
-                //     arraycontasPF[indiceConta].Info();
-                // } else { 
-                //     arraycontasPJ[indiceConta].Info();
-                // }
-
-                if(user1){
-                    user1.Info();
+                if(arraycontasPF[indiceConta]){
+                    arraycontasPF[indiceConta].Info();
+                } else { 
+                    arraycontasPJ[indiceConta].Info();
                 }
-            
-                //! Extrato
-                // if (tipoConta === "PF") {
-                //     arraycontasPF[indiceConta].infoPF(arraycontasPF, indiceConta);
-                // } else if (tipoConta === "PJ") {
-                //     arraycontasPJ[indiceConta].infoPJ(arraycontasPJ, indiceConta);
-                // }
 
                 break;
 
